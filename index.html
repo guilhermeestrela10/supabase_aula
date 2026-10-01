@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Alunos</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body style="font-family: sans-serif; max-width: 500px; margin: 24px auto;">
+  <h1>Alunos</h1>
+
+  <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+    <input id="nome" placeholder="Nome">
+    <input id="email" placeholder="Email">
+    <button onclick="adicionar()">Adicionar</button>
+  </div>
+
+  <ul id="lista"></ul>
+
+  <script>
+    const SUPABASE_URL = 'https://byywjajzuhfrlgzmbrmg.supabase.co'
+    const SUPABASE_KEY = 'sb_publishable_L4S3rD2DNukvunruovca1g_nxGwvfBT'
+    const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+
+    async function carregar() {
+      const { data, error } = await db.from('alunos').select('*').order('id')
+      if (error) { alert(error.message); return }
+
+      const lista = document.getElementById('lista')
+      lista.innerHTML = ''
+      data.forEach(a => {
+        const li = document.createElement('li')
+        li.textContent = a.nome + (a.email ? ' (' + a.email + ')' : '')
+        lista.appendChild(li)
+      })
+    }
+
+    async function adicionar() {
+      const nome = document.getElementById('nome').value
+      const email = document.getElementById('email').value
+      if (!nome) return
+
+      const { error } = await db.from('alunos').insert({ nome, email })
+      if (error) { alert(error.message); return }
+
+      document.getElementById('nome').value = ''
+      document.getElementById('email').value = ''
+      carregar()
+    }
+
+    carregar()
+  </script>
+</body>
+</html>
