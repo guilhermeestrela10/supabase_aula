@@ -2,6 +2,8 @@
 
 Projeto de aula usando(aprendendo) **Supabase** (banco de dados PostgreSQL na nuvem) com uma página em **HTML + JavaScript** para listar e cadastrar alunos.
 
+Senha do supabase quando for entrar no banco criado, o primeiro criado: **cJd0liynvhLyRvlA**
+
 ## Arquivos
 
 - `index.html`: página que conecta no Supabase, lista os alunos e permite cadastrar novos.
@@ -17,4 +19,4 @@ Projeto de aula usando(aprendendo) **Supabase** (banco de dados PostgreSQL na nu
 
 HTML, JavaScript, Supabase (PostgreSQL)
 
-senha do supabase quando for entrar no banco criado, o primeiro criado: **cJd0liynvhLyRvlA**
+
